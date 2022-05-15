@@ -100,7 +100,7 @@ one can load the script like this:
    }
 ```
 
-The full usage sample can be found [sample/main.go](https://github.com/rosbit/prolog/blob/sample/main.go)
+The full usage sample can be found [sample/main.go](https://github.com/rosbit/prolog/blob/master/sample/main.go).
 
 ### Status
 
