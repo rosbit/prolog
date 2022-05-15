@@ -54,16 +54,16 @@ one can load the script like this:
 #### 3. Prepare arguments and variables
 
 ```go
-   // query Who listens Music
+   // query Who listens to Music
    args := []interface{}{pl.PlVar("Who"), pl.PlVar("Music")}
 
-   // query Who listens "bach"
+   // query Who listens to "bach"
    args := []interface{}{pl.PlVar("Who"), "bach"}
 
-   // query Which Music "ergou" listens
+   // query Which Music "ergou" listens to
    args := []interface{}{"ergou", pl.PlVar("Music")}
 
-   // check whether "ergou" listens "bach"
+   // check whether "ergou" listens to "bach"
    args := []interface{}{"ergou", "bach"}
 ```
 
