@@ -8,9 +8,9 @@ import (
 	"strings"
 )
 
-func (p *Prolog) Query(goal string, args ...interface{}) (it <-chan map[string]interface{}, ok bool, err error) {
-	if len(goal) == 0 {
-		err = fmt.Errorf("goal expected")
+func (p *Prolog) Query(predict string, args ...interface{}) (it <-chan map[string]interface{}, ok bool, err error) {
+	if len(predict) == 0 {
+		err = fmt.Errorf("predict expected")
 		return
 	}
 
@@ -30,7 +30,7 @@ func (p *Prolog) Query(goal string, args ...interface{}) (it <-chan map[string]i
 		return
 	}
 
-	return p.doQuery(goal, argc, argv, vars)
+	return p.doQuery(predict, argc, argv, vars)
 }
 
 func makeGoalArgs(args ...interface{}) (argc int, argv []term.Term, vars map[int]string, err error) {
@@ -59,24 +59,24 @@ func makeGoalArgs(args ...interface{}) (argc int, argv []term.Term, vars map[int
 	return
 }
 
-func (p *Prolog) doQuery(goal string, argc int, argv []term.Term, vars map[int]string) (it <-chan map[string]interface{}, ok bool, err error) {
+func (p *Prolog) doQuery(predict string, argc int, argv []term.Term, vars map[int]string) (it <-chan map[string]interface{}, ok bool, err error) {
 	var qGoal term.Callable
 
 	varCount := len(vars)
 	if argc == 0 || varCount == 0 {
-		qGoal = term.NewCallable(goal, argv...)
+		qGoal = term.NewCallable(predict, argv...)
 		ok = p.m.CanProve(qGoal)
 		return
 	}
 
 	if varCount < argc {
-		qGoal = term.NewCallable(goal, argv...)
+		qGoal = term.NewCallable(predict, argv...)
 	} else {
 		as := make([]string, argc)
 		for i, arg := range argv {
 			as[i] = arg.String()
 		}
-		q := fmt.Sprintf("%s(%s).", goal, strings.Join(as, ", "))
+		q := fmt.Sprintf("%s(%s).", predict, strings.Join(as, ", "))
 		// fmt.Printf("q: %s\n", q)
 
 		qTerm, e := read.Term(q)
