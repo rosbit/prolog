@@ -5,6 +5,10 @@
 This package extending the golog and making it a **pragmatic embedding** language.
 With some helper functions provided by `prolog`, calling Prolog from Golang is very simple.
 
+For golog has been archived not be updated for yeas, it is recommended to use my other embeddable prolog
+[go-trealla](https://github.com/rosbit/go-trealla), which implements most of ISO prolog predicts and is
+more efficient.
+
 ### Usage
 
 The package is fully go-getable, so, just type
@@ -100,7 +104,7 @@ one can load the script like this:
    }
 ```
 
-The full usage sample can be found [sample/main.go](https://github.com/rosbit/prolog/blob/master/sample/main.go).
+The full usage sample can be found [sample/main.go](sample/main.go).
 
 ### Status
 
